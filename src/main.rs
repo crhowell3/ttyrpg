@@ -1,8 +1,5 @@
 use clap::Parser;
-use ratatui::Frame;
-
 use std::panic;
-
 use ttyrpg::app::{App, AppResult};
 use ttyrpg::event::{Event, EventHandler};
 use ttyrpg::handler::handle_key_events;
@@ -28,7 +25,7 @@ struct Args {
 }
 
 fn main() -> AppResult<()> {
-    let args = Args::parse();
+    let _args = Args::parse();
 
     let mut app = App::default();
 

@@ -1,7 +1,14 @@
 use super::ui::UI;
 
+#[derive(Debug, Default, Clone)]
+#[allow(dead_code)]
+pub struct Items {
+    name: String,
+    description: String,
+}
+
 #[derive(Debug, Default)]
-struct Character {
+pub struct Character {
     health: u8,
     items: Vec<Items>,
 }
@@ -66,9 +73,3 @@ impl Game {
 }
 
 impl GameLogic {}
-
-#[derive(Debug, Default, Clone)]
-struct Items {
-    name: String,
-    description: String,
-}
