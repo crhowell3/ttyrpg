@@ -9,20 +9,17 @@ use crate::app::App;
 
 pub fn render(app: &mut App, frame: &mut Frame<'_>) {
     let main_area = frame.area();
+    let main_area = main_area.resize(ratatui::layout::Size {
+        width: 80,
+        height: 30,
+    });
     render_game_widgets(frame, app, main_area);
 }
 
 pub fn render_game_widgets(frame: &mut Frame<'_>, app: &mut App, main_area: Rect) {
     let main_layout = Layout::default()
         .direction(Direction::Vertical)
-        .constraints(
-            [
-                Constraint::Ratio(1, 20),
-                Constraint::Ratio(18, 20),
-                Constraint::Min(0),
-            ]
-            .as_ref(),
-        )
+        .constraints([Constraint::Ratio(2, 20), Constraint::Ratio(18, 20)].as_ref())
         .split(main_area);
 
     let character_info_block = Block::default().style(Style::default());
@@ -33,5 +30,7 @@ pub fn render_game_widgets(frame: &mut Frame<'_>, app: &mut App, main_area: Rect
 
     let world_block = Block::default().style(Style::default());
 
-    app.game.ui.world_render(world_block.inner(main_layout[1]), frame);
+    app.game
+        .ui
+        .world_render(world_block.inner(main_layout[1]), frame);
 }
